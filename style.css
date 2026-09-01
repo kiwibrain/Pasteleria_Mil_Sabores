@@ -9,3 +9,11 @@ body{
     height: 70px;
     width: 70px;
 }
+
+.footer-logo{
+    display: flex;
+    justify-content: left;
+    padding: 5px;
+    height: 170px;
+    width: 170px; 
+}
