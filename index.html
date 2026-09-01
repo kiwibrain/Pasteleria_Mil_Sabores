@@ -1,32 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Pasteleria Mil Sabores</title>
-    <link rel="stylesheet" href="    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
     <header class="header">
-        <div class="logo"><img src="images/pasteleria_logo.png" alt="Logo"></div>
-        <nav class="nav_left">
-            <a href="index.html">Inicio</a>
-            <a href="#">Productos</a>
-            <a href="#">Nosotros</a>
-            <a href="#">Cotizar</a>
-            <a href="#">Contacto</a>
-            <a href="#">Locales</a>
+        <div class="navbar-fixed">
+        <nav class="navbar">
+            <div class="nav-wrapper">
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><div class="logo"><img src="images/pasteleria_logo_transparent.png" alt="Logo"></div></li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+                
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#"><i class="material-icons left">Buscar</i></a></li>
+                    <li><a href="#">Carrito</a></li>
+                    <li><a href="#">Iniciar Sesión</a></li>
+                    <li><a href="#">Registrarse</a></li>
+                </ul>
+                
+                
+                
+                
+            </div>
         </nav>
-        <nav class="nav_right">
-            <a href="#">Carrito</a>
-            <a href="#">Iniciar Sesión</a>
-            <a href="#">Registrarse</a>
-        </nav>
+        </div>
     </header>
 
-    
+
     <main></main>
 
 
@@ -38,4 +50,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="function.js"></script>
 </body>
+
 </html>
