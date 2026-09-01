@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -26,10 +27,21 @@
                     </ul>
 
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#"><i class="material-icons left">Buscar</i></a></li>
                         <li><a href="#">Carrito</a></li>
                         <li><a href="#">Iniciar Sesión</a></li>
                         <li><a href="#">Registrarse</a></li>
+                        <li>
+                            <form class="form-search">
+                                <div class="input-field">
+
+                                    <input id="search" type="search" required>
+                                    <label class="label-icon" for="search"><i
+                                            class="medium material-icons left">search</i></label>
+                                    <i class="material-icons">close</i>
+
+                                </div>
+                            </form>
+                        </li>
                     </ul>
 
                 </div>
@@ -71,7 +83,8 @@
             <div class="row">
                 <div class="col l6 s12">
                     <div class="footer-logo"><img src="images/pasteleria_logo_transparent.png" alt="logo"></div>
-                    <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt odit eligendi cupiditate numquam ipsa.</p>
+                    <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
+                        odit eligendi cupiditate numquam ipsa.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Informaciones</h5>

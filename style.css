@@ -27,3 +27,8 @@ body{
   main {
     flex: 1 0 auto;
   }
+
+.form-search{
+    display: flex !important;
+    justify-content: center !important;
+}
