@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+    var elems = document.querySelectorAll('.materialboxed');
+    var instancesBox = M.Materialbox.init(elemsBox, {});
+
     var elemsSidenav = document.querySelectorAll('.sidenav');
     var instancesSidenav = M.Sidenav.init(elemsSidenav, {});
 
@@ -15,8 +18,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 instances.start();
 instancesSidenav.start();
-
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelectorAll('.materialboxed');
-    var instances = M.Materialbox.init(elems, options);
-});
+instancesBox.start();
+instanceBox.open();
