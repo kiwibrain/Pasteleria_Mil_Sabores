@@ -1,11 +1,18 @@
 document.addEventListener('DOMContentLoaded', function () {
+    //COLLAPSIBLE PARA DETALLE PRODUCTO
+    var elemsColl = document.querySelectorAll('.collapsible');
+    var instancesColl = M.Collapsible.init(elemsColl, {});
 
-    var elems = document.querySelectorAll('.materialboxed');
+
+    //MATERIALBOXED PARA PRODUCTOS
+    var elemsBox = document.querySelectorAll('.materialboxed');
     var instancesBox = M.Materialbox.init(elemsBox, {});
-
+    
+    //SIDENAV PARA MOVILES
     var elemsSidenav = document.querySelectorAll('.sidenav');
     var instancesSidenav = M.Sidenav.init(elemsSidenav, {});
 
+    //SLIDER PAG PRINCIPAL
     var elems = document.querySelectorAll('.slider');
     var options = {
         indicators: true,
