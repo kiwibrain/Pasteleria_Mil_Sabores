@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+
+    var elemsSidenav = document.querySelectorAll('.sidenav');
+    var instancesSidenav = M.Sidenav.init(elemsSidenav, {});
+
     var elems = document.querySelectorAll('.slider');
     var options = {
         indicators: true,
@@ -10,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 instances.start();
+instancesSidenav.start();
 
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.materialboxed');
