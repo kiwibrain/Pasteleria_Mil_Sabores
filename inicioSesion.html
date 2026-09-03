@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos Pasteleria Mil Sabores</title>
+    <title>Inicio Pasteleria Mil Sabores</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
@@ -58,45 +58,40 @@
     </ul>
 
     <main>
-        <section id="card-container">
-            <div class="row">
-                <div class="col s12 m6 l3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="images/torta_chocolate_cuadrada.webp" class="responsive-img">
-                            <span class="card-title"></span>
+                <section id="formulario">
+            <div class="container">
+                <h3>Registrarse</h3>
+
+                <form action="#">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <div class="contenedor-input">
+                                <label for="txtEmail">Email:</label>
+                                <input id="txtEmail" class="form-control" type="text" placeholder="Ingrese su email">
+                            </div>
                         </div>
-                        <div class="card-content">
-                            <h5>Torta de Chocolate Cuadrada</h5>
-                            <p>15.000</p>
+
+                        <div class="col s12 m6">
+                            <div class="contenedor-input">
+                                <label for="txtPassword">Contraseña:</label>
+                                <input onblur="cambioInput()" id="txtPassword" class="form-control" type="text"
+                                    placeholder="Ingrese su contraseña">
+                            </div>
                         </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn" href="producto.html?id=1">Detalles</a>
-                            <a class="right waves-effect waves-light light-blue lighten-5 black-text btn"
-                                href="#">Agregar</a>
+
+
+                        <div class="col s12 m6 contenedor-btn">
+                            <button onclick="ingresoUser()" class="btn btn-success">Ingresar</button>
                         </div>
+
+
                     </div>
-                </div>
-                <div class="col s12 m6 l3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="#" class="responsive-img">
-                            <span class="card-title"></span>
-                        </div>
-                        <div class="card-content">
-                            <h5>Torta de Mil Hojas</h5>
-                            <p>20.000</p>
-                        </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn" href="producto.html?id=2">Detalles</a>
-                            <a class="right waves-effect waves-light light-blue lighten-5 black-text btn"
-                                href="#">Agregar</a>
-                        </div>
-                    </div>
-                </div>
+                </form>
+
             </div>
         </section>
     </main>
+
 
     <footer class="page-footer">
         <div class="container">
@@ -129,6 +124,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="function.js"></script>
+
 </body>
 
 </html>
