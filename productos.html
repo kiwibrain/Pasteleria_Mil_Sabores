@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="productos.css">
 </head>
 
 <body>
@@ -29,8 +30,8 @@
 
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li><a href="#">Carrito</a></li>
-                        <li><a href="inicioSesion.html">Iniciar Sesión</a></li>
-                        <li><a href="registroUsuario.html">Registrarse</a></li>
+                        <li><a href="#">Iniciar Sesión</a></li>
+                        <li><a href="#">Registrarse</a></li>
                         <li>
                             <form class="form-search">
                                 <div class="input-field">
@@ -50,52 +51,20 @@
             </nav>
         </div>
     </header>
-    <ul class="sidenav" id="mobile-demo">
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="productos.html">Productos</a></li>
-        <li><a href="#">Nosotros</a></li>
-        <li><a href="#">Contacto</a></li>
-    </ul>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
 
     <main>
-        <section id="card-container">
-            <div class="row">
-                <div class="col s12 m6 l3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="images/torta_chocolate_cuadrada.webp" class="responsive-img">
-                            <span class="card-title"></span>
-                        </div>
-                        <div class="card-content">
-                            <h5>Torta de Chocolate Cuadrada</h5>
-                            <p>15.000</p>
-                        </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn" href="producto.html?id=1">Detalles</a>
-                            <a class="right waves-effect waves-light light-blue lighten-5 black-text btn"
-                                href="#">Agregar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6 l3">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="#" class="responsive-img">
-                            <span class="card-title"></span>
-                        </div>
-                        <div class="card-content">
-                            <h5>Torta de Mil Hojas</h5>
-                            <p>20.000</p>
-                        </div>
-                        <div class="card-action">
-                            <a class="waves-effect waves-light btn" href="producto.html?id=2">Detalles</a>
-                            <a class="right waves-effect waves-light light-blue lighten-5 black-text btn"
-                                href="#">Agregar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="container">
+            <h2 class="center-align">Nuestros Productos</h2>
+            <section id="productos">
+                
+            </section>
+        </div>
     </main>
 
     <footer class="page-footer">
@@ -103,8 +72,7 @@
             <div class="row">
                 <div class="col l6 s12">
                     <div class="footer-logo"><img src="images/pasteleria_logo_transparent.png" alt="logo"></div>
-                    <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt
-                        odit eligendi cupiditate numquam ipsa.</p>
+                    <p class="grey-text text-lighten-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sunt odit eligendi cupiditate numquam ipsa.</p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Informaciones</h5>
@@ -129,6 +97,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="function.js"></script>
+    <script src="productos.js"></script>
+    
 </body>
 
 </html>
