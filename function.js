@@ -78,3 +78,12 @@ function guardarCarrito(){
     alert("Añadido al carrito")
 
 }
+
+const producto = JSON.parse(localStorage.getItem('productoActual'));
+if (producto) {
+    document.getElementById('detalle-nombre').innerText = producto.titulo;
+    document.getElementById('detalle-precio').innerText = producto.precio_formateado;
+    document.getElementById('detalle-img').src = producto.imagen;
+    document.getElementById('detalle-descripcion').innerText = producto.descripcion;
+    // ...demás campos (ingredientes, tiempo_preparacion, etc.)
+}

@@ -1,8 +1,25 @@
-// productos.js
 document.addEventListener('DOMContentLoaded', function() {
-    
-    console.log("Cargando productos...");
+    console.log("Cargando catálogo e inicializando componentes...");
 
+    // 1. Inicialización de componentes Materialize CSS
+    var elemsColl = document.querySelectorAll('.collapsible');
+    M.Collapsible.init(elemsColl, {});
+
+    var elemsBox = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(elemsBox, {});
+
+    var elemsSidenav = document.querySelectorAll('.sidenav');
+    M.Sidenav.init(elemsSidenav, {});
+
+    var elemsSlider = document.querySelectorAll('.slider');
+    M.Slider.init(elemsSlider, {
+        indicators: true,
+        height: 600,
+        duration: 500,
+        interval: 6000
+    });
+
+    // 2. Base de Datos de Productos
     var productos = [
         {
             "id": "TC001",
@@ -11,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "titulo": "Torta Cuadrada de Chocolate",
             "imagen": "images/torta_chocolate_cuadrada.webp",
             "precio": 45000,
-            "precio": "$45.000 CLP",
+            "precio_formateado": "$45.000 CLP",
             "descripcion": "Deliciosa torta cuadrada de chocolate",
             "ingredientes": ["Harina", "Chocolate", "Huevos", "Azúcar", "Manteca", "Esencia de vainilla", "Crema"],
             "tiempo_preparacion": "60 min",
@@ -96,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "imagen": "images/torta_de_naranja.png",
             "precio": 48000,
             "precio_formateado": "$48.000 CLP",
-            "descripcion": "Torta de naranja endulzada naturalmente, sin azúcar añadida",
+            "descripcion": "Torta de naranja endulzada naturally, sin azúcar añadida",
             "ingredientes": ["Harina integral", "Naranja", "Huevos", "Stevia", "Aceite de coco"],
             "tiempo_preparacion": "50 min",
             "dificultad": "Media",
@@ -230,22 +247,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+    // 3. Renderizar catálogo si el elemento existe en el HTML
     const section = document.getElementById("productos");
-    
-    if (!section) {
-        console.log("No se encontró el section #productos");
-        return;
+    if (section) {
+        generarProductos(productos, section);
     }
 
-    console.log("Section encontrado:", section);
-
-    // Generar productos
-    generarProductos(productos, section);
-
-    console.log("Productos cargados correctamente");
+    // 4. Lógica para renderizar plantilla de detalles (si estamos en producto.html)
+    const urlParams = new URLSearchParams(window.location.search);
+    const productoId = urlParams.get('id');
+    
+    if (productoId) {
+        // Buscar en la lista principal por código/ID tipo string
+        const productoElegido = productos.find(p => p.id === productoId);
+        if (productoElegido) {
+            const elNombre = document.getElementById('detalle-nombre');
+            const elPrecio = document.getElementById('detalle-precio');
+            const elImg = document.getElementById('detalle-img');
+            
+            if (elNombre) elNombre.innerText = productoElegido.titulo;
+            if (elPrecio) elPrecio.innerText = productoElegido.precio_formateado;
+            if (elImg) elImg.src = productoElegido.imagen;
+        }
+    }
 });
 
-// Función para generar productos
+// Generar Cards Dinámicas
 function generarProductos(productos, section) {
     const contenedorCards = document.createElement("div");
     contenedorCards.className = "row";
@@ -331,25 +358,31 @@ function generarProductos(productos, section) {
     }
 }
 
-// Función para ver detalles
+// Redireccionar guardando la información elegida
 function verDetalles(producto) {
     localStorage.setItem('productoActual', JSON.stringify(producto));
-    window.location.href = 'item.html';
+    // Pasa el ID como parámetro URL para que coincida con la navegación
+    window.location.href = `producto.html?id=${producto.id}`;
 }
 
-// Función para guardar en carrito
+// Lógica de Carrito de Compras
 function guardar(producto) {
-    const LLAVE = "carrito";
-    var storageActual = localStorage.getItem(LLAVE);
-    var lista = [];
-    if (storageActual != null) {
-        var storageParse = JSON.parse(storageActual);
-        storageParse.push(producto);
-        localStorage.setItem(LLAVE, JSON.stringify(storageParse));
+    const LLAVE = "carrito-pasteleria";
+    let carrito = JSON.parse(localStorage.getItem(LLAVE)) || [];
+
+    // Verificar si el producto ya existe en el carrito
+    const existe = carrito.find(item => item.id === producto.id);
+    if (existe) {
+        existe.cantidad = (existe.cantidad || 1) + 1;
+    } else {
+        producto.cantidad = 1;
+        carrito.push(producto);
+    }
+
+    localStorage.setItem(LLAVE, JSON.stringify(carrito));
+    if (window.M && M.toast) {
         M.toast({html: `¡${producto.titulo} agregado al carrito!`});
     } else {
-        lista.push(producto);
-        localStorage.setItem(LLAVE, JSON.stringify(lista));
-        M.toast({html: `¡${producto.titulo} agregado al carrito!`});
+        alert(`¡${producto.titulo} agregado al carrito!`);
     }
 }
