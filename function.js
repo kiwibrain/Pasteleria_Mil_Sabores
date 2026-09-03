@@ -51,12 +51,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //===============================================================================
 
-
-
 //CARRITO
 
+let carrito = JSON.parse(localStorage.getItem('carrito-pasteleria')) || [];
+
 function guardarCarrito(){
-    var nombreProd = document.getElementById("txtNomProd").textContent;
-    var cantidad = document.getElementById("txtCant").value;
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    const cantidad = document.getElementById('txtCant').value;
+    if (cantidad == null || cantidad <= 0){
+        alert("Por favor ingrese una cantidad");
+        return;
+    }
+
+    const producto = inventarioProductos.find(p => p.id == id);
+
+    carrito.push({
+        idProducto: producto.id,
+        nombre: producto.nombre,
+        precio: producto.precio,
+        cantidad: parseInt(cantidad)
+    });
+
+    localStorage.setItem('carrito-pasteleria', JSON.stringify(carrito));
+    alert("Añadido al carrito")
 
 }
