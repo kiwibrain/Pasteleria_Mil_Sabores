@@ -1,89 +1,166 @@
-
-//SIMULACION BASE DE DATOS
-const inventarioProductos = [
-    {id: 1, nombre: "Torta de Chocolate Cuadrada", precio: 15000, img: "images/torta_chocolate_cuadrada.webp", 
-            desc: "Deliciosa torta de chocolate", ingredient: "blablablbaldsalkdlasj"},
-    {id: 2, nombre: "Torta de Mil Hojas", precio: 20000, img: "images/placeholder.jpg", 
-            desc: "MMMM que rico :)", ingredient: "blablablbaldsalkdlasj"}
-]
-
-//===============================================================================
-
-//EVENTS
 document.addEventListener('DOMContentLoaded', function () {
-    //COLLAPSIBLE PARA DETALLE PRODUCTO
+    // ==========================================
+    // 1. INICIALIZAR COMPONENTES DE MATERIALIZE
+    // ==========================================
     var elemsColl = document.querySelectorAll('.collapsible');
-    var instancesColl = M.Collapsible.init(elemsColl, {});
+    M.Collapsible.init(elemsColl, {});
 
-
-    //MATERIALBOXED PARA PRODUCTOS
     var elemsBox = document.querySelectorAll('.materialboxed');
-    var instancesBox = M.Materialbox.init(elemsBox, {});
+    M.Materialbox.init(elemsBox, {});
     
-    //SIDENAV PARA MOVILES
     var elemsSidenav = document.querySelectorAll('.sidenav');
-    var instancesSidenav = M.Sidenav.init(elemsSidenav, {});
+    M.Sidenav.init(elemsSidenav, {});
 
-    //SLIDER PAG PRINCIPAL
-    var elems = document.querySelectorAll('.slider');
-    var options = {
+    var elemsSlider = document.querySelectorAll('.slider');
+    M.Slider.init(elemsSlider, {
         indicators: true,
         height: 600,
         duration: 500,
         interval: 6000
-    }
-    var instances = M.Slider.init(elems, options);
+    });
 
-    //PLANTILLA PRODUCTO
-    const urlParams = new URLSearchParams(window.location.search);
-    const productoId = urlParams.get('id');
-    if (productoId){
-        const productoElegido = inventarioProductos.find(p => p.id == productoId)
-        if (productoElegido){
-            document.getElementById('detalle-nombre').innerText = productoElegido.nombre;
-            document.getElementById('detalle-precio').innerText = productoElegido.precio;
-            document.getElementById('detalle-img').src = productoElegido.img;
+    // ==========================================
+    // 2. LÓGICA DE LA PÁGINA "DETALLE DE PRODUCTO"
+    // ==========================================
+    const tituloProducto = document.getElementById('detalle-nombre');
+    
+    if (tituloProducto) {
+        try {
+            const productoGuardado = localStorage.getItem('productoActual');
+            if (productoGuardado) {
+                const producto = JSON.parse(productoGuardado);
+                
+                tituloProducto.innerText = producto.titulo;
+                
+                const precioEl = document.getElementById('detalle-precio');
+                if (precioEl) precioEl.innerText = producto.precio_formateado;
+                
+                const imgEl = document.getElementById('detalle-img');
+                if (imgEl) imgEl.src = producto.imagen;
+            } else {
+                tituloProducto.innerText = "Producto no encontrado";
+            }
+        } catch (error) {
+            console.error("Error al cargar producto", error);
         }
     }
 
+    // ==========================================
+    // 3. INICIALIZAR PÁGINA DEL CARRITO (Si estamos en carrito.html)
+    // ==========================================
+    const tablaCarrito = document.getElementById('tabla-carrito');
+    if (tablaCarrito) {
+        renderizarCarrito();
+    }
 });
 
 
-//===============================================================================
+// ==========================================
+// FUNCIONES GLOBALES DEL CARRITO
+// ==========================================
 
-//CARRITO
+// Función para el botón "Añadir al carrito" dentro de producto.html
+function guardarCarrito() {
+    const cantidadInput = document.getElementById('txtCant').value;
+    const cantidad = parseInt(cantidadInput);
 
-let carrito = JSON.parse(localStorage.getItem('carrito-pasteleria')) || [];
-
-function guardarCarrito(){
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
-
-    const cantidad = document.getElementById('txtCant').value;
-    if (cantidad == null || cantidad <= 0){
-        alert("Por favor ingrese una cantidad");
+    if (!cantidad || cantidad <= 0) {
+        M.toast({html: "Por favor ingresa una cantidad válida"});
         return;
     }
 
-    const producto = inventarioProductos.find(p => p.id == id);
+    const productoGuardado = localStorage.getItem('productoActual');
+    if (!productoGuardado) return;
+    
+    const productoActual = JSON.parse(productoGuardado);
+    const LLAVE = "carrito-pasteleria";
+    let carrito = JSON.parse(localStorage.getItem(LLAVE)) || [];
 
-    carrito.push({
-        idProducto: producto.id,
-        nombre: producto.nombre,
-        precio: producto.precio,
-        cantidad: parseInt(cantidad)
-    });
+    const existe = carrito.find(item => item.id === productoActual.id);
+    if (existe) {
+        existe.cantidad = (existe.cantidad || 1) + cantidad;
+    } else {
+        productoActual.cantidad = cantidad;
+        carrito.push(productoActual);
+    }
 
-    localStorage.setItem('carrito-pasteleria', JSON.stringify(carrito));
-    alert("Añadido al carrito")
-
+    localStorage.setItem(LLAVE, JSON.stringify(carrito));
+    M.toast({html: `¡Se agregaron ${cantidad} ${productoActual.titulo} al carrito!`});
 }
 
-const producto = JSON.parse(localStorage.getItem('productoActual'));
-if (producto) {
-    document.getElementById('detalle-nombre').innerText = producto.titulo;
-    document.getElementById('detalle-precio').innerText = producto.precio_formateado;
-    document.getElementById('detalle-img').src = producto.imagen;
-    document.getElementById('detalle-descripcion').innerText = producto.descripcion;
-    // ...demás campos (ingredientes, tiempo_preparacion, etc.)
+// Dibuja los productos en la tabla de carrito.html
+function renderizarCarrito() {
+    const tabla = document.getElementById('tabla-carrito');
+    const totalEl = document.getElementById('total-carrito');
+    if (!tabla) return;
+
+    let carrito = JSON.parse(localStorage.getItem('carrito-pasteleria')) || [];
+    tabla.innerHTML = ''; // Limpiamos la tabla
+    let totalPagar = 0;
+
+    // Si el carrito está vacío
+    if (carrito.length === 0) {
+        tabla.innerHTML = '<tr><td colspan="3" class="center-align">Tu carrito está vacío 🍰</td></tr>';
+        totalEl.innerText = '$0';
+        return;
+    }
+
+    // Dibujar cada producto
+    carrito.forEach((item) => {
+        // Multiplicamos el precio por la cantidad
+        const subtotal = item.precio * item.cantidad;
+        totalPagar += subtotal;
+
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <img src="${item.imagen}" alt="${item.titulo}" width="60" style="border-radius: 5px;">
+                    <b>${item.titulo}</b>
+                </div>
+            </td>
+            <td>
+                <input type="number" value="${item.cantidad}" min="1" 
+                       class="form-control" style="width: 70px; text-align: center;" 
+                       onchange="actualizarCantidad('${item.id}', this.value)">
+            </td>
+            <td>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span>$${subtotal.toLocaleString('es-CL')}</span>
+                    <a href="#!" onclick="eliminarDelCarrito('${item.id}')" class="red-text" title="Eliminar">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </div>
+            </td>
+        `;
+        tabla.appendChild(fila);
+    });
+
+    // Actualizamos el total (agregando formato de miles para Chile)
+    totalEl.innerText = '$' + totalPagar.toLocaleString('es-CL');
+}
+
+// Se ejecuta al cambiar el número en el input del carrito
+function actualizarCantidad(idProducto, nuevaCantidad) {
+    let carrito = JSON.parse(localStorage.getItem('carrito-pasteleria')) || [];
+    const item = carrito.find(p => p.id === idProducto);
+    
+    if (item) {
+        item.cantidad = parseInt(nuevaCantidad);
+        if (item.cantidad < 1) item.cantidad = 1; // Seguridad para no bajar de 1
+    }
+    
+    localStorage.setItem('carrito-pasteleria', JSON.stringify(carrito));
+    renderizarCarrito(); // Redibujamos la tabla para que se actualicen los totales
+}
+
+// Se ejecuta al presionar el ícono de la papelera
+function eliminarDelCarrito(idProducto) {
+    let carrito = JSON.parse(localStorage.getItem('carrito-pasteleria')) || [];
+    // Filtramos para quedarnos con todos los productos EXCEPTO el que queremos borrar
+    carrito = carrito.filter(p => p.id !== idProducto);
+    
+    localStorage.setItem('carrito-pasteleria', JSON.stringify(carrito));
+    M.toast({html: 'Producto eliminado del carrito'});
+    renderizarCarrito(); // Redibujamos la tabla
 }
