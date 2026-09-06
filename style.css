@@ -36,3 +36,24 @@ body{
 .precio{
   color: darkred;
 }
+
+.texto-slide{
+  text-shadow: #000000 1px 0 10px;
+}
+
+.texto-main{
+  display: flex;
+  justify-content: center;
+  color:rgb(60, 22, 22);
+}
+
+.text-categoria a{
+  text-decoration: none;
+  color:black;
+  transition: color 1s;
+  font-weight: bold;
+}
+
+.text-categoria a:hover{
+  color: rgb(187, 79, 193);
+}

@@ -154,20 +154,20 @@ function actualizarCantidad(idProducto, nuevaCantidad) {
     
     if (item) {
         item.cantidad = parseInt(nuevaCantidad);
-        if (item.cantidad < 1) item.cantidad = 1; // Seguridad para no bajar de 1
+        if (item.cantidad < 1) item.cantidad = 1;
     }
     
     localStorage.setItem('carrito-pasteleria', JSON.stringify(carrito));
-    renderizarCarrito(); // Redibujamos la tabla para que se actualicen los totales
+    renderizarCarrito();
 }
 
-// Se ejecuta al presionar el ícono de la papelera
+
 function eliminarDelCarrito(idProducto) {
     let carrito = JSON.parse(localStorage.getItem('carrito-pasteleria')) || [];
-    // Filtramos para quedarnos con todos los productos EXCEPTO el que queremos borrar
+    
     carrito = carrito.filter(p => p.id !== idProducto);
     
     localStorage.setItem('carrito-pasteleria', JSON.stringify(carrito));
     M.toast({html: 'Producto eliminado del carrito'});
-    renderizarCarrito(); // Redibujamos la tabla
+    renderizarCarrito();
 }
