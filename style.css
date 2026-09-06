@@ -36,3 +36,20 @@ body{
 .precio{
   color: darkred;
 }
+
+.boton-pagar a{
+  background-color: #8B4513;
+}
+
+.boton-continuar-compra a{
+  background-color: #8B4513;
+}
+
+.contenedor-btn button.btn.btn-success {
+    background-color: #8B4513;
+    
+}
+
+.col.s8.m4 a{
+  background-color: #8B4513;
+}
