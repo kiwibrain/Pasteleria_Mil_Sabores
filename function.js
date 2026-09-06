@@ -37,6 +37,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 const imgEl = document.getElementById('detalle-img');
                 if (imgEl) imgEl.src = producto.imagen;
+
+                const descEl = document.getElementById('detalle-descripcion');
+                if (descEl) descEl.innerText = producto.descripcion;
+
+                const ingrEl = document.getElementById('detalle-ingredientes');
+                if (ingrEl) ingrEl.innerText = producto.ingredientes;
+
             } else {
                 tituloProducto.innerText = "Producto no encontrado";
             }
