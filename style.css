@@ -37,6 +37,7 @@ body{
   color: darkred;
 }
 
+<<<<<<< HEAD
 .texto-slide{
   text-shadow: #000000 1px 0 10px;
 }
@@ -56,4 +57,21 @@ body{
 
 .text-categoria a:hover{
   color: rgb(187, 79, 193);
+=======
+.boton-pagar a{
+  background-color: #8B4513;
+}
+
+.boton-continuar-compra a{
+  background-color: #8B4513;
+}
+
+.contenedor-btn button.btn.btn-success {
+    background-color: #8B4513;
+    
+}
+
+.col.s8.m4 a{
+  background-color: #8B4513;
+>>>>>>> 158742c2aa97ac08e674235ba81dde4d0b26cb2b
 }

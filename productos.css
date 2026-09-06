@@ -148,3 +148,11 @@
         min-height: 120px;
     }
 }
+
+.pink.darken-1{
+    background-color: #8B4513 !important;
+}
+
+.light-blue.lighten-5{
+    background-color: #FFC0CB !important;
+}
