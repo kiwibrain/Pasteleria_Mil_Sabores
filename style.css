@@ -37,6 +37,7 @@ body{
   color: darkred;
 }
 
+<<<<<<< HEAD
 .texto-slide{
   text-shadow: #000000 1px 0 10px;
 }
@@ -58,6 +59,8 @@ body{
   color: rgb(187, 79, 193);
 }
 
+=======
+>>>>>>> e32df4c925834407c5258e47fde7324d69f15675
 .boton-pagar a{
   background-color: #8B4513;
 }
@@ -73,8 +76,11 @@ body{
 
 .col.s8.m4 a{
   background-color: #8B4513;
+<<<<<<< HEAD
 }
 
 .boton-slide{
   background-color: #8B4513;
+=======
+>>>>>>> e32df4c925834407c5258e47fde7324d69f15675
 }
