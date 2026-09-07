@@ -67,7 +67,8 @@
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtNombre">Nombre(s):</label>
-                                <input id="txtNombre" class="form-control" type="text" placeholder="Ingrese su nombre">
+                                <input id="txtNombre" class="form-control" type="text"
+                                        placeholder="Ingrese su nombre" max="100" required>
                             </div>
                         </div>
 
@@ -75,38 +76,39 @@
                             <div class="contenedor-input">
                                 <label for="txtApellido">Apellido(s):</label>
                                 <input onblur="cambioInput()" id="txtApellido" class="form-control" type="text"
-                                    placeholder="Ingrese su apellido">
+                                    placeholder="Ingrese su apellido" max="100" required>
                             </div>
                         </div>
 
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtEdad">Edad:</label>
-                                <input id="txtEdad" class="form-control" type="number" placeholder="Ingrese su edad">
+                                <input id="txtEdad" class="form-control" type="number"
+                                placeholder="Ingrese su edad" min="0" max="110" required>
                             </div>
                         </div>
 
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtEmail">Email:</label>
-                                <input id="txtEmail" class="form-control" type="text"
-                                    placeholder="Ingrese su email">
+                                <input id="txtEmail" class="form-control" type="email"
+                                    placeholder="Ingrese su email" pattern=".*@[gmail.com|profesor.duoc.cl|duoc.cl]" max="100" required>
                             </div>
                         </div>
 
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtPassword">Contraseña:</label>
-                                <input id="txtPassword" class="form-control" type="text"
-                                    placeholder="Ingrese una contraseña">
+                                <input id="txtPassword" class="form-control" type="password"
+                                    placeholder="Ingrese una contraseña" min="8" required>
                             </div>
                         </div>
 
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtPassConfirm">Confirme Contraseña:</label>
-                                <input id="txtPassConfirm" class="form-control" type="text"
-                                    placeholder="Ingrese su contraseña nuevamente">
+                                <input id="txtPassConfirm" class="form-control" type="password"
+                                    placeholder="Ingrese su contraseña nuevamente" min="8" required>
                             </div>
                         </div>
 
@@ -114,6 +116,9 @@
                             <button onclick="registroUser()" class="btn btn-success">Confirmar</button>
                         </div>
 
+                        <div class="col s12 m6 contenedor-btn">
+                            <input type="submit" value="submit">
+                        </div>
 
                     </div>
                 </form>
