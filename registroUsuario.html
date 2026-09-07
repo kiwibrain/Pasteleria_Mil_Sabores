@@ -62,29 +62,32 @@
             <div class="container">
                 <h3>Registrarse</h3>
 
-                <form action="#">
+                <form id="formularioRegistro" action="#">
                     <div class="row">
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtNombre">Nombre(s):</label>
                                 <input id="txtNombre" class="form-control" type="text"
-                                        placeholder="Ingrese su nombre" max="100" required>
+                                        placeholder="Ingrese su nombre" max="100"
+                                        required>
                             </div>
                         </div>
 
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtApellido">Apellido(s):</label>
-                                <input onblur="cambioInput()" id="txtApellido" class="form-control" type="text"
-                                    placeholder="Ingrese su apellido" max="100" required>
+                                <input id="txtApellido" class="form-control" type="text"
+                                    placeholder="Ingrese su apellido" max="100"
+                                    required>
                             </div>
                         </div>
 
                         <div class="col s12 m6">
                             <div class="contenedor-input">
-                                <label for="txtEdad">Edad:</label>
-                                <input id="txtEdad" class="form-control" type="number"
-                                placeholder="Ingrese su edad" min="0" max="110" required>
+                                <label for="numEdad">Edad:</label>
+                                <input id="numEdad" class="form-control" type="number"
+                                placeholder="Ingrese su edad" min="0" max="110"
+                                required>
                             </div>
                         </div>
 
@@ -92,7 +95,10 @@
                             <div class="contenedor-input">
                                 <label for="txtEmail">Email:</label>
                                 <input id="txtEmail" class="form-control" type="email"
-                                    placeholder="Ingrese su email" pattern=".*@[gmail.com|profesor.duoc.cl|duoc.cl]" max="100" required>
+                                    placeholder="Ingrese su email" max="100"
+                                    pattern=".*@(gmail.com|profesor.duoc.cl|duoc.cl)"
+                                    required>
+                                    
                             </div>
                         </div>
 
@@ -100,7 +106,8 @@
                             <div class="contenedor-input">
                                 <label for="txtPassword">Contraseña:</label>
                                 <input id="txtPassword" class="form-control" type="password"
-                                    placeholder="Ingrese una contraseña" min="8" required>
+                                    placeholder="Ingrese una contraseña" min="4" max="10"
+                                    required>
                             </div>
                         </div>
 
@@ -108,18 +115,19 @@
                             <div class="contenedor-input">
                                 <label for="txtPassConfirm">Confirme Contraseña:</label>
                                 <input id="txtPassConfirm" class="form-control" type="password"
-                                    placeholder="Ingrese su contraseña nuevamente" min="8" required>
+                                    placeholder="Ingrese su contraseña nuevamente" min="8"
+                                    required>
                             </div>
                         </div>
 
                         <div class="col s12 m6 contenedor-btn">
-                            <button onclick="registroUser()" class="btn btn-success">Confirmar</button>
+                            <button type="submit" class="btn btn-success">Confirmar</button>
                         </div>
 
-                        <!-- Widget de prueba -->
+                        <!-- Widget de prueba
                         <div class="col s12 m6 contenedor-btn">
-                            <input type="submit" value="submit" hidden>
-                        </div>
+                            <button type="submit">Test</button>
+                        </div> -->
 
                     </div>
                 </form>
@@ -160,7 +168,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="function.js"></script>
-
+    <script src="functionRegistroUsuario.js"></script>
 </body>
 
 </html>
