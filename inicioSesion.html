@@ -63,7 +63,7 @@
             <div class="container">
                 <h3>Iniciar sesión</h3>
 
-                <form action="#">
+                <form id="formularioInicio" action="#">
                     <div class="row">
                         <div class="col s12 m6">
                             <div class="contenedor-input">
@@ -75,14 +75,14 @@
                         <div class="col s12 m6">
                             <div class="contenedor-input">
                                 <label for="txtPassword">Contraseña:</label>
-                                <input onblur="cambioInput()" id="txtPassword" class="form-control" type="text"
+                                <input id="txtPassword" class="form-control" type="password"
                                     placeholder="Ingrese su contraseña">
                             </div>
                         </div>
 
 
                         <div class="col s12 m6 contenedor-btn">
-                            <button onclick="ingresoUser()" class="btn btn-success">Ingresar</button>
+                            <button type="submit" class="btn btn-success">Ingresar</button>
                         </div>
 
 
@@ -125,6 +125,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="function.js"></script>
+    <script src="functionInicioSesion.js"></script>
 
 </body>
 

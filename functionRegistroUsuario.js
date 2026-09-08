@@ -44,12 +44,12 @@ function intentarRegistrarUsuario(){
         mensajesErrores.push("Email no aceptado");
     }
     if(elementoPassword.value.length<4 || elementoPassword.value.length>10){
-        console.log("elementoPassword.value: " + typeof(elementoPassword.value) + " : " + elementoPassword.value)
         mensajesErrores.push("Contraseña debe tener un largo entre 4 a 10 caracteres");
     }
     if(elementoPassword.value !== elementoPassConfirm.value){
         mensajesErrores.push("Contraseña es diferente en ambos campos");
     }
+
     if(mensajesErrores.length>0){
         M.toast({ html: mensajesErrores.join(' / ') });
         event.preventDefault();
